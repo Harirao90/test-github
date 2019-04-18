@@ -1,4 +1,4 @@
-pipeline {
+
          agent any
          stages {
                  stage('Build') {
@@ -22,4 +22,4 @@ pipeline {
                            build job: 'Deploy to staging'
                            }
                   }
-}
+
