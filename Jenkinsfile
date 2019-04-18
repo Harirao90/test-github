@@ -1,9 +1,9 @@
 pipeline {
-  agent {   
+            agent {   
                   stage('SCM Checkout')
                   git credentials: 'git', url: 'https://github.com/Harirao90/test-github' 
-  }         
-  stages {
+                   }         
+        stages {
                  stage('Build') {
                  steps {
                      sh 'mvn clean package'
@@ -27,4 +27,4 @@ pipeline {
                   }
 }
 
-
+}
