@@ -1,5 +1,4 @@
 node {
-         stages {
                   {
                   stage('SCM Checkout')
                   git credentials: 'git', url: 'https://github.com/Harirao90/test-github' 
@@ -27,4 +26,4 @@ node {
                            }
                   }
 
-}
+
