@@ -3,7 +3,7 @@ node {
                   stage('SCM Checkout')
                   git credentials: 'git', url: 'https://github.com/Harirao90/test-github' 
                   
-                  
+  stages {
                  stage('Build') {
                  steps {
                      sh 'mvn clean package'
@@ -25,5 +25,6 @@ node {
                            build job: 'Deploy to staging'
                            }
                   }
-
+}
+}
 
