@@ -1,0 +1,90 @@
+
+
+
+var add_claim = '0x3b63eb416a10292b74f7388bcd370101912a447b';    //address of claim token contract 
+
+var abi_claim = [{"constant":true,"inputs":[],"name":"getClaimIDs","outputs":[{"name":"","type":"uint256[]"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_ClaimID","type":"uint256"}],"name":"getClaimDetailsAndStatusByClaimID","outputs":[{"name":"","type":"bytes32"},{"name":"","type":"uint256"},{"name":"","type":"bool"},{"name":"","type":"bool"},{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_claimID","type":"uint256"}],"name":"checkClaimIDExistance","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_claimID","type":"uint256"}],"name":"getHRStatusByClaimID","outputs":[{"name":"HR_status","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_claimID","type":"uint256"}],"name":"getESStatusByClaimID","outputs":[{"name":"ES_status","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getClaimsWithStatus","outputs":[{"name":"","type":"uint256[]"},{"name":"","type":"bytes32[]"},{"name":"","type":"uint256[]"},{"name":"","type":"bool[]"},{"name":"","type":"bool[]"},{"name":"","type":"bool[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_claimID","type":"uint256"},{"name":"_claimDescription","type":"bytes32"},{"name":"_claimAmount","type":"uint256"}],"name":"addClaim","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_val","type":"uint256"}],"name":"Hello","outputs":[{"name":"status","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_claimID","type":"uint256"}],"name":"getRMStatusByClaimID","outputs":[{"name":"RM_status","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"candidate_Claim","outputs":[{"name":"claimAmount","type":"uint256"},{"name":"claimDescription","type":"bytes32"},{"name":"HR_st","type":"bool"},{"name":"RM_st","type":"bool"},{"name":"ES_App_st","type":"bool"},{"name":"ClaimID","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_ClaimID","type":"uint256"}],"name":"getClaimDetailsByClaimID","outputs":[{"name":"","type":"bytes32"},{"name":"","type":"uint256"}],"payable":false,"type":"function"}]
+// A
+function raiseClick(){
+    window.location.href = 'raiseClaim.html';
+}
+
+//Functions
+function submitClick(){
+    //var Claimtoken = claimtoken.deployed();
+        var claimtoken = web3.eth.contract(abi_claim).at(add_claim);
+
+  var  claimId = parseInt(document.getElementById("i1").value);
+  var  amount = parseInt(document.getElementById("i2").value);
+  var  description = document.getElementById("i3").value;
+         alert(claimId +" " + amount +" " + description);
+    
+     //Adding claim to backend
+//      claimtoken.Hello(23).then(function(res) {
+//      alert("claim raised",res); 
+// });
+
+
+
+
+// var p1 = new Promise(function(resolve, reject) {
+//   resolve('Success!');
+ 
+// });
+
+// p1.then(function(value) {
+//         alert('yes');
+//   console.log(value); // Success!
+// }, function(reason) {
+//           alert('no');
+//   console.log(reason); // Error!
+// });
+
+var jsPromise = Promise.resolve(claimtoken.Hello(23));
+jsPromise.then(function(response) {
+  // ...
+  alert(response);
+}, function(xhrObj) {
+  // ...
+})
+// Promise.all([ claimtoken.Hello(23)]).then(function(res) {
+//   // all loaded
+//   console.log(res);
+//   alert(res);
+// }, function() {
+//         alert('r');
+//   // one or more failed
+// });
+
+
+
+
+ claimtoken.addClaim(claimId, description, amount).then(function() {
+     alert("claim raised");
+}).catch(function(e) {
+    console.log(e);
+    
+    resetButton();
+    
+  });
+};
+
+// for 'X' key == VALIDATION
+function resetButton(){
+        document.getElementById("i1").value = "";
+        document.getElementById("i2").value = "";
+        document.getElementById("i3").value = "";
+
+}
+function resetButton1(){
+        document.getElementById("i1").value = "";
+}
+function resetButton2(){
+        document.getElementById("i2").value = "";
+}
+function resetButton3(){
+        document.getElementById("i3").value = "";
+}
+
+
+        

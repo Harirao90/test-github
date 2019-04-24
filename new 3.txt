@@ -1,0 +1,72 @@
+var DefaultBuilder = require("truffle-default-builder");
+
+module.exports = {
+  build: new DefaultBuilder({
+    "index.html": "index.html",
+    "app.js": [
+      "javascripts/app.js"
+    ],
+    "bootstrap.js": [
+      "javascripts/bootstrap.js"
+    ],
+    "bootstrap.min.js": [
+      "javascripts/bootstrap.min.js"
+    ],
+    "npm.js": [
+      "javascripts/npm.js"
+    ],
+    "app.css": [
+      "stylesheets/app.css"
+    ],
+    "bootstrap.css": [
+      "stylesheets/bootstrap.css"
+    ],
+    "bootstrap.css.map": [
+      "stylesheets/bootstrap.css.map"
+    ],
+        "bootstrap.min.css": [
+      "/stylesheets/bootstrap.min.css"
+    ],
+        "bootstrap.min.css.map": [
+      "/stylesheets/bootstrap.min.css.map"
+    ],
+        "bootstrap-theme.css": [
+      "stylesheets/bootstrap-theme.css"
+    ],
+        "stylesheets/": [
+      "stylesheets/bootstrap-theme.css.map"
+    ],
+        "stylesheets/": [
+      "stylesheets/bootstrap-theme.css.map"
+    ],    
+        "stylesheets/": [
+      "stylesheets/bootstrap-theme.min.css.map"
+    ],
+    "stylesheets/": [
+      "stylesheets/docs.min.css"
+    ],
+    "stylesheets/": [
+      "stylesheets/font-awesome.min.css"
+    ],
+    "stylesheets/": [
+      "stylesheets/unify.css"
+    ],
+    "images/":[
+       "images/logo.jpg"
+    ],
+    "images/download.jpg":[
+       "images/download.jpg"
+    ],
+    "images/":[
+       "images/main-logo.png"
+    ]
+    
+  }),
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    }
+  }
+};
